@@ -7,18 +7,20 @@ const typeDefs = gql`
     shipmentNo: String!
     adminStatus: String
     supplierStatusHeader: String
-    vendorAddress: Address!
-    supplier: Supplier!
     documentDate: String
     postingDate: String
+    vendorAddress: Address!
+    supplier: Supplier!
     items: [Item!]
   }
 
   type Query {
+    purchaseOrderSupplier(id: ID!): PurchaseOrder
     purchaseOrder(id: ID!): PurchaseOrder
     allPurchaseOrders: [PurchaseOrder]
+    supplierAllPurchaseOrders: [PurchaseOrder]
+    supplierPurchaseOrdersByStatus(status: String): [PurchaseOrder]
     purchaseOrdersStatus(status: String): [PurchaseOrder]
-
   }
 
   type Mutation {
@@ -53,8 +55,6 @@ const typeDefs = gql`
     supplierStatusHeader: String
     documentDate: String
     postingDate: String
-    supplier: UpdateSupplierInput
-    items: [UpdateItemInput]
   }
 `;
 
